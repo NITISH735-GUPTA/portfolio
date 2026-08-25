@@ -1,3 +1,9 @@
+const getAssetPath = (path) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${base}${cleanPath}`;
+};
+
 export const personalDetails = {
   name: "Nitish Kumar Gupta",
   role: "Full-Stack & AI Engineer | Software Developer | AI/ML Researcher",
@@ -10,7 +16,7 @@ export const personalDetails = {
   location: "India",
   email: "nitishgupta7700@gmail.com",
   phone: "+91 7352550536",
-  profileImage: "/profile.jpg",
+  profileImage: getAssetPath('/profile.jpg'),
   status: "Available for AI Research & Software Engineering Internships",
   bioShort: "Third-year B.Tech CSE student, DST INSPIRE Scholar (Among Top 1%), AI & Drug Discovery Research Intern, and Competitive Programmer with 725+ DSA problems solved.",
   bioStory: `I am a third-year B.Tech Computer Science student, INSPIRE Scholar, and AI Research Intern with a passion for solving meaningful problems through technology. My journey began with a strong curiosity about how software can transform ideas into real-world impact, which led me to explore programming, data structures, algorithms, and full-stack development.
@@ -179,8 +185,8 @@ export const experienceData = [
       status: "Approved",
       authority: "Department of Science & Technology (Government of India)",
       researchArea: "AI for Drug Discovery",
-      approvalImage: "/dst_approval.png",
-      coverImage: "/dst_project_cover.png",
+      approvalImage: getAssetPath('/dst_approval.png'),
+      coverImage: getAssetPath('/dst_project_cover.png'),
       driveLink: "https://drive.google.com/file/d/1YBZSb-Y-jrOlDsiWwzCVKaCPWbVCi-es/view?usp=drive_link",
       drivePreview: "https://drive.google.com/file/d/1YBZSb-Y-jrOlDsiWwzCVKaCPWbVCi-es/preview"
     }
