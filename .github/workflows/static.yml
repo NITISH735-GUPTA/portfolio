@@ -15,18 +15,10 @@ permissions:
   pages: write
   id-token: write
 
-<<<<<<< HEAD
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-=======
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
->>>>>>> 584f86560af8f1b5a79dc3b7f5cb947fb17f7e01
 
 jobs:
   # Single deploy job since we're just deploying
@@ -38,7 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-<<<<<<< HEAD
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -63,15 +54,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-=======
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
->>>>>>> 584f86560af8f1b5a79dc3b7f5cb947fb17f7e01
