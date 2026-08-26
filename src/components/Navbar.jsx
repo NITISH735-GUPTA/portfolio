@@ -39,20 +39,35 @@ const Navbar = ({ onOpenResume }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const yOffset = -75; // Header offset compensation
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  const handleNavClick = (e, sectionId) => {
+    if (e) e.preventDefault();
+    setMobileMenuOpen(false);
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const yOffset = -75; // Header offset compensation
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
         scrolled || mobileMenuOpen
           ? 'py-3 bg-[#030712] border-b border-slate-800/80 shadow-2xl shadow-cyan-950/20'
           : 'py-5 bg-transparent'
