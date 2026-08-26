@@ -169,44 +169,91 @@ const Navbar = ({ onOpenResume }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Full-Screen Mobile Overlay Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden absolute top-full left-0 right-0 w-full bg-[#030712] bg-opacity-100 border-b border-slate-800 shadow-2xl shadow-cyan-950/50 overflow-hidden z-[9999]"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="fixed inset-0 z-[100] bg-[#030712] text-white flex flex-col justify-between p-5 md:hidden overflow-y-auto"
             style={{ backgroundColor: '#030712', opacity: 1 }}
           >
-            <div className="bg-[#030712] px-4 pt-3 pb-6 space-y-2 max-h-[calc(100vh-80px)] overflow-y-auto">
+            {/* Top Bar inside Overlay */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
+              <a
+                href="#home"
+                onClick={(e) => handleNavClick(e, 'home')}
+                className="flex items-center gap-2.5"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-violet-600 p-[1.5px] overflow-hidden">
+                  <img
+                    src={personalDetails.profileImage}
+                    alt={personalDetails.name}
+                    className="w-full h-full object-cover rounded-[9px]"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-heading font-bold text-sm tracking-tight text-white flex items-center gap-1">
+                    Nitish Kumar Gupta
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                  </span>
+                  <span className="text-[9px] text-cyan-400 font-mono tracking-wider uppercase -mt-0.5 font-semibold">
+                    Full-Stack & AI Developer
+                  </span>
+                </div>
+              </a>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5 text-cyan-400" />
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="py-6 space-y-2 flex-1 flex flex-col justify-center my-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all ${
+                  className={`flex items-center justify-between px-5 py-3.5 rounded-2xl text-sm font-semibold transition-all ${
                     activeSection === link.id
-                      ? 'bg-cyan-950/60 border border-cyan-500/50 text-white shadow-md'
-                      : 'text-slate-200 bg-slate-900/90 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 text-cyan-300 shadow-lg shadow-cyan-500/10'
+                      : 'text-slate-300 bg-slate-900/80 hover:bg-slate-800 border border-slate-800/60 hover:text-white'
                   }`}
                 >
                   <span>{link.name}</span>
                   <ChevronRight className="w-4 h-4 text-cyan-400" />
                 </a>
               ))}
+            </div>
 
-              <div className="pt-4 border-t border-slate-800 flex flex-col gap-2">
-                <a
-                  href="#contact"
-                  onClick={(e) => handleNavClick(e, 'contact')}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-center font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-95 transition-transform"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Let's Connect</span>
-                </a>
-              </div>
+            {/* Bottom Actions */}
+            <div className="pt-4 border-t border-slate-800 space-y-3 shrink-0">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+                className="w-full py-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 font-semibold text-sm flex items-center justify-center gap-2"
+              >
+                <FileText className="w-4 h-4 text-cyan-400" />
+                <span>View Resume</span>
+              </button>
+
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-violet-600 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-xl shadow-cyan-500/25 active:scale-95 transition-transform"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Let's Connect</span>
+              </a>
             </div>
           </motion.div>
         )}

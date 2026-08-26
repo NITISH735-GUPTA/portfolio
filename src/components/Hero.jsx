@@ -148,7 +148,7 @@ const Hero = ({ onOpenResume }) => {
             className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-500/60 text-slate-200 hover:text-white font-semibold text-sm backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
           >
             <FileText className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
-            <span>Download Resume</span>
+            <span>View Resume</span>
           </button>
 
           <a

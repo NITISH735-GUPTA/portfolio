@@ -186,7 +186,7 @@ const Contact = ({ onOpenResume }) => {
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-500/50 text-slate-200 hover:text-white font-semibold text-xs transition-all shadow-md"
                 >
                   <FileText className="w-4 h-4 text-cyan-400" />
-                  <span>Download / Preview Resume</span>
+                  <span>View Resume</span>
                 </button>
               </div>
 
