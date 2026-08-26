@@ -101,26 +101,29 @@ const About = () => {
                   href="https://drive.google.com/file/d/1Hu5-pncX-UejrF2KdOTVmj0rkp8S2jnR/view?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all text-xs group/lor cursor-pointer"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-3.5 gap-1.5 sm:gap-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all text-xs group/lor cursor-pointer"
                   title="View Official Letter of Recommendation by HOD"
                 >
-                  <span className="text-slate-400">HOD Recommendation</span>
-                  <span className="text-cyan-400 font-semibold flex items-center gap-1.5 group-hover/lor:text-cyan-300 transition-colors">
-                    <span>1st & 2nd Year Academic Excellence — LOR by HOD</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-cyan-400 group-hover/lor:translate-x-0.5 transition-transform" />
+                  <span className="text-slate-400 shrink-0 font-medium">HOD Recommendation</span>
+                  <span className="text-cyan-400 font-semibold flex items-center gap-1.5 break-words group-hover/lor:text-cyan-300 transition-colors text-left sm:text-right">
+                    <span className="break-words">1st & 2nd Year Academic Excellence — LOR by HOD</span>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0 text-cyan-400 group-hover/lor:translate-x-0.5 transition-transform" />
                   </span>
                 </a>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
-                  <span className="text-slate-400">Scholarship</span>
-                  <span className="text-indigo-400 font-medium">INSPIRE Scholar (Among Top 1%)</span>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-3.5 gap-1.5 sm:gap-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+                  <span className="text-slate-400 shrink-0 font-medium">Scholarship</span>
+                  <span className="text-indigo-400 font-semibold break-words text-left sm:text-right">INSPIRE Scholar (Among Top 1%)</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
-                  <span className="text-slate-400">DSA Solved</span>
-                  <span className="text-violet-400 font-medium">725+ Problems</span>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-3.5 gap-1.5 sm:gap-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+                  <span className="text-slate-400 shrink-0 font-medium">DSA Solved</span>
+                  <span className="text-violet-400 font-semibold break-words text-left sm:text-right">725+ Problems</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
-                  <span className="text-slate-400">Academic Standing</span>
-                  <span className="text-amber-400 font-medium">Branch Topper (9.32)</span>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-3.5 gap-1.5 sm:gap-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+                  <span className="text-slate-400 shrink-0 font-medium">Academic Standing</span>
+                  <span className="text-amber-400 font-semibold break-words text-left sm:text-right">Branch Topper (9.32)</span>
                 </div>
               </div>
             </div>
