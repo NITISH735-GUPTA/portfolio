@@ -176,10 +176,11 @@ const Navbar = ({ onOpenResume }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden bg-[#030712] border-b border-slate-800/80 shadow-2xl shadow-cyan-950/40 overflow-hidden"
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="md:hidden absolute top-full left-0 right-0 w-full bg-[#030712] bg-opacity-100 border-b border-slate-800 shadow-2xl shadow-cyan-950/50 overflow-hidden z-[9999]"
+            style={{ backgroundColor: '#030712', opacity: 1 }}
           >
-            <div className="px-4 pt-3 pb-6 space-y-2 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <div className="bg-[#030712] px-4 pt-3 pb-6 space-y-2 max-h-[calc(100vh-80px)] overflow-y-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
@@ -187,16 +188,16 @@ const Navbar = ({ onOpenResume }) => {
                   onClick={(e) => handleNavClick(e, link.id)}
                   className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all ${
                     activeSection === link.id
-                      ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 text-white shadow-md'
-                      : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                      ? 'bg-cyan-950/60 border border-cyan-500/50 text-white shadow-md'
+                      : 'text-slate-200 bg-slate-900/90 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
                   <span>{link.name}</span>
-                  <ChevronRight className="w-4 h-4 text-cyan-400/80" />
+                  <ChevronRight className="w-4 h-4 text-cyan-400" />
                 </a>
               ))}
 
-              <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-2">
+              <div className="pt-4 border-t border-slate-800 flex flex-col gap-2">
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, 'contact')}
