@@ -39,11 +39,22 @@ const Navbar = ({ onOpenResume }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const yOffset = -75; // Header offset compensation
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'py-3 bg-[#030712]/80 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl shadow-cyan-950/20'
+        scrolled || mobileMenuOpen
+          ? 'py-3 bg-[#030712] border-b border-slate-800/80 shadow-2xl shadow-cyan-950/20'
           : 'py-5 bg-transparent'
       }`}
     >
@@ -52,6 +63,7 @@ const Navbar = ({ onOpenResume }) => {
           {/* Logo */}
           <a
             href="#home"
+            onClick={(e) => handleNavClick(e, 'home')}
             className="flex items-center gap-2.5 group cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-violet-600 p-[1.5px] shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
@@ -80,6 +92,7 @@ const Navbar = ({ onOpenResume }) => {
                 <a
                   key={link.id}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.id)}
                   className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-colors duration-200 ${
                     isActive ? 'text-white' : 'text-slate-400 hover:text-slate-200'
                   }`}
@@ -109,6 +122,7 @@ const Navbar = ({ onOpenResume }) => {
             
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
               className="relative inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -119,7 +133,10 @@ const Navbar = ({ onOpenResume }) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <button
-              onClick={onOpenResume}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
               className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400"
               aria-label="Resume"
             >
@@ -128,10 +145,10 @@ const Navbar = ({ onOpenResume }) => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-slate-300 hover:text-white focus:outline-none"
+              className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none transition-colors"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -144,30 +161,31 @@ const Navbar = ({ onOpenResume }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#070c18]/95 backdrop-blur-2xl border-b border-slate-800 overflow-hidden"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden bg-[#030712] border-b border-slate-800/80 shadow-2xl shadow-cyan-950/40 overflow-hidden"
           >
-            <div className="px-4 pt-3 pb-6 space-y-2">
+            <div className="px-4 pt-3 pb-6 space-y-2 max-h-[calc(100vh-80px)] overflow-y-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all ${
                     activeSection === link.id
-                      ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-500/30 text-white'
-                      : 'text-slate-400 hover:bg-slate-900 hover:text-white'
+                      ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 text-white shadow-md'
+                      : 'text-slate-300 hover:bg-slate-900 hover:text-white'
                   }`}
                 >
                   <span>{link.name}</span>
-                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                  <ChevronRight className="w-4 h-4 text-cyan-400/80" />
                 </a>
               ))}
 
               <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-2">
                 <a
                   href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-center font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-center font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-95 transition-transform"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Let's Connect</span>
