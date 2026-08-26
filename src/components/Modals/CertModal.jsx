@@ -35,7 +35,7 @@ const CertModal = ({ cert, onClose }) => {
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-semibold">
+              <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-semibold whitespace-nowrap">
                 {cert.category}
               </span>
               <h3 className="text-xl font-bold text-white font-heading mt-1">{cert.title}</h3>

@@ -45,15 +45,15 @@ const Certifications = () => {
               <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-bl-full pointer-events-none group-hover:bg-amber-500/10 transition-colors" />
 
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-semibold">
-                    <Sparkles className="w-3 h-3" />
-                    {cert.badgeText}
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] sm:text-xs font-mono font-semibold whitespace-nowrap shrink-0">
+                    <Sparkles className="w-3 h-3 shrink-0" />
+                    <span>{cert.badgeText}</span>
                   </span>
 
                   {cert.verified && (
-                    <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
-                      <ShieldCheck className="w-3 h-3" /> Verified
+                    <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md whitespace-nowrap shrink-0">
+                      <ShieldCheck className="w-3 h-3 shrink-0" /> Verified
                     </span>
                   )}
                 </div>
